@@ -1,0 +1,39 @@
+{
+    "name": "ajroudsoftwares/image-cropper",
+    "description": "demo Bundle for Symfony",
+    "homepage": "https://ajroudsoftwares.tn",
+    "authors": [
+        {
+            "name": "Ajroud Softwares",
+            "email": "contact@ajroudsoftwares.tn",
+            "homepage": "https://ajroudsoftwares.tn",
+            "role": "Developer"
+        }],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.3",
+        "symfony/framework-bundle": "^7.1|^7.2",
+        "symfony/form": "^7.1|^7.2",
+        "symfony/validator": "^7.1|^7.2",
+        "symfony/twig-bundle": "^7.1|^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "AjroudSoftwares\\ImageCropperBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "AjroudSoftwares\\ImageCropperBundle\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "@stable"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/flex": true
+        }
+    }
+}

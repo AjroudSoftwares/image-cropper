@@ -1,0 +1,72 @@
+{#
+ This file is part of the AjroudSoftwares/image-cropper package.
+
+   (c) Aymen Ajroud  <ajroudaymen@ajroudsoftwares.tn>
+
+   For the full copyright and license information, please view the LICENSE
+   file that was distributed with this source code.
+#}
+{% block image_cropper_row %}
+    <div class="{{ form.vars.row_attr|join(' ') }}">
+        <link rel="stylesheet" href="{{ asset('bundles/imagecropper/assets/cropper/css/cropper.min.css') }}"/>
+        {{ block('image_cropper_content') }}
+        <script src="{{ asset('bundles/imagecropper/assets/cropper/js/cropper.min.js') }}"></script>
+        {{ block('additional_javascript') }}
+    </div>
+{% endblock image_cropper_row %}
+
+{% block image_cropper_content %}
+    {{ form_label(form) }}
+    {{ form_widget(form) }}
+    {{ form_help(form) }}
+    {{ form_errors(form) }}
+    <div>
+        <img id="{{ form.vars.id }}_prev"
+             src="{{ asset('bundles/imagecropper/assets/media/default_image_cropper.png') }}"
+             style="max-width: 100%;display: block;" alt="default"/>
+    </div>
+{% endblock image_cropper_content %}
+
+{% block additional_javascript %}
+    <script>
+        $(document).ready(() => {
+            let inputID = '#{{ form.vars.id }}';
+            let preview = $(inputID + '_prev')[0];
+            // initialize the cropper and empty it
+            const cropper = new Cropper(preview, {{ form.vars.cropperOptions|json_encode|raw }});
+            cropper.destroy();
+            // when a file is selected or changed it will initialize the cropper
+            $(inputID).on('change', function () {
+                cropperInitFormAjax(cropper, this, $(this).closest('form'),{{ form.vars.cropperSizeOptions|json_encode|raw }});
+            });
+        });
+
+        // Requires cropper.js and cropper.css , a preview img , a file input and a form with ajax post path and exposed route
+        function cropperInitFormAjax(cropper, fileinput, form, canvasOptions = {width: 600, height: 400}) {
+            let reader = new FileReader();
+            // when the file is loaded it will replace the image in the cropper
+            reader.addEventListener("load", function () {
+                cropper.replace(reader.result);
+
+                // when the form is submitted it will crop the image and replace the file input with the cropped image
+                form.on('submit', function (event) {
+                    event.preventDefault();
+                    let canvas = cropper.getCroppedCanvas(canvasOptions);
+                    canvas.toBlob(function (blob) {
+                        let file = new File([blob], "Cropped-img.png", {type: "image/png"});
+                        let container = new DataTransfer();
+                        container.items.add(file);
+                        fileinput.files = container.files;
+                        form.off('submit').submit();
+                    });
+                });
+            }, false);
+
+            // read the file as data url and trigger the load event
+            if (fileinput.files[0]) {
+                reader.readAsDataURL(fileinput.files[0]);
+            }
+        }
+
+    </script>
+{% endblock additional_javascript %}

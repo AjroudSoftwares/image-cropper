@@ -1,0 +1,30 @@
+
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+/.idea/commandlinetools/schemas/frameworkDescriptionVersion1.1.4.xsd
+/.idea/commandlinetools/Symfony_30_11_2024__01_11.xml
+/.idea/.gitignore
+/.idea/AjroudSoftwaresRSS.iml
+/.idea/codeception.xml
+/.idea/modules.xml
+/.idea/php.xml
+/.idea/php-test-framework.xml
+/.idea/phpspec.xml
+/.idea/phpunit.xml
+/.idea/symfony2.xml
+/.idea/vcs.xml
+/composer.lock
+/.idea/AjroudSoftwaresExempleBundle.iml
