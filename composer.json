@@ -1,10 +1,10 @@
 {
     "name": "ajroudsoftwares/image-cropper",
-    "description": "demo Bundle for Symfony",
+    "description": "image cropper Bundle for Symfony",
     "homepage": "https://ajroudsoftwares.tn",
     "authors": [
         {
-            "name": "Ajroud Softwares",
+            "name": "Aymen Ajroud",
             "email": "contact@ajroudsoftwares.tn",
             "homepage": "https://ajroudsoftwares.tn",
             "role": "Developer"
@@ -22,14 +22,6 @@
         "psr-4": {
             "AjroudSoftwares\\ImageCropperBundle\\": "src/"
         }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "AjroudSoftwares\\ImageCropperBundle\\Tests\\": "tests/"
-        }
-    },
-    "require-dev": {
-        "phpunit/phpunit": "@stable"
     },
     "config": {
         "allow-plugins": {
